@@ -1,6 +1,10 @@
 [package]
-name = "hello_cargo"
+name = "tokio-chat-example"
 version = "0.1.0"
 authors = ["B. van Berkum <dev@dotmpe.com>"]
 
 [dependencies]
+tokio = "0.1"
+tokio-io = "0.1"
+futures = "0.1"
+bytes = "0.4"

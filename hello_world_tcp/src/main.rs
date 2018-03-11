@@ -8,7 +8,6 @@ fn main() {
   let addr = "127.0.0.1:12345".parse().unwrap();
   let listener = TcpListener::bind(&addr).unwrap();
 
-  // Following snippets come here...
   let server = listener.incoming().for_each(|socket| {
     println!("accepted socket; addr={:?}", socket.peer_addr().unwrap());
   
@@ -24,10 +23,6 @@ fn main() {
     Ok(())
   })
   .map_err(|err| {
-    // All tasks must have an `Error` type of `()`. This forces error
-    // handling and helps avoid silencing failures.
-    //
-    // In our example, we are only going to log the error to STDOUT.
     println!("accept error = {:?}", err);
   });
 

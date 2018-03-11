@@ -1,0 +1,14 @@
+[package]
+name = "background-docopt"
+version = "0.1.0"
+authors = ["B. van Berkum <dev@dotmpe.com>"]
+
+[dependencies]
+docopt = "0.8"
+serde = "1.0"
+serde_derive = "1.0"
+tokio = "0.1"
+tokio-io = "0.1"
+tokio-core = "0.1"
+futures = "0.1"
+bytes = "0.4"

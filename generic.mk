@@ -11,7 +11,8 @@ default: $(BIN)
 $(BIN): src/main.rs
 	cargo build
 
-run: $(BIN) ; $<
+#run: F :=
+run: $(BIN) ; $< $F
 
 clean: ; rm $(BIN)
 

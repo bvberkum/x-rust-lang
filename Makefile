@@ -2,12 +2,12 @@ default: build
 all: test
 
 BIN += hello_world \
-	bin/hello_cargo \
-	bin/naval_fate \
 	bin/tutorial_01 \
 	bin/simple_tcp_client \
-	bin/hello_world_tcp
-TEST += test-hello_world test-hello_cargo test-naval_fate test-hello_world_tcp
+	bin/hello_world_tcp \
+	bin/background-docopt \
+	bin/tokio-chat-example
+TEST += test-hello_world test-hello_world_tcp
 
 build: $(BIN)
 	
@@ -20,7 +20,10 @@ bin/%: %/src/*.rs %/Cargo.toml
 	cd $(*) && cargo build --release && mv target/release/$* ../bin/
 	du -hs bin/*
 
-clean:
+clean-dep:
+	git clean -dfx */target */Cargo.lock
+
+clean-build:
 	rm $(BIN)
 
 clean-all:
@@ -30,12 +33,6 @@ test:: build $(TEST)
 
 test-hello_world: hello_world
 	./$<
-
-test-hello_cargo: bin/hello_cargo
-	./$<
-
-test-naval_fate: bin/naval_fate
-	./$< --version
 
 #test-tutorial_01: bin/tutorial_01
 #	echo 52 | ./$<
@@ -47,4 +44,4 @@ test-hello_world_tcp: bin/hello_world_tcp
 	} | expect
 	killall hello_world_tcp
 
-.PHONY: default all build clean clean-all test $(TEST)
+.PHONY: default all build clean-build clean-dep clean-all test $(TEST)
