@@ -23,6 +23,9 @@ bin/%: %/src/*.rs %/Cargo.toml
 clean:
 	rm $(BIN)
 
+clean-all:
+	git clean -dfx
+
 test:: build $(TEST)
 
 test-hello_world: hello_world
@@ -44,4 +47,4 @@ test-hello_world_tcp: bin/hello_world_tcp
 	} | expect
 	killall hello_world_tcp
 
-.PHONY: default all build clean test $(TEST)
+.PHONY: default all build clean clean-all test $(TEST)
